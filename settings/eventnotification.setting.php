@@ -1,0 +1,41 @@
+<?php
+
+return [
+  'eventnotification_email_address' => [
+    'group' => 'eventnotification',
+    'name' => 'eventnotification_email_address',
+    'type' => 'String', 
+    'html_type' => 'text',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => 'Email address to send notification of event creation / edit to',
+    'default' => '',
+    'settings_pages' => ['eventnotification' => ['weight' => 20]],
+    'add' => '5.26',
+    'title' => 'Event Notification Email Address',
+  ],
+  'eventnotification_financial_types' => [
+    'group' => 'eventnotification',
+    'type' => 'Array',
+    'name' => 'eventnotification_financial_types',
+    'html_type' => 'select',
+    'settings_pages' => ['eventnotification' => ['weight' => 30]],
+    'add' => '5.26', 
+    'pseudoconstant' => ['table' => 'civicrm_financial_type', 'keyColumn' => 'id', 'labelColumn' => 'name'],
+    'title' => 'Event Financial Types to Notify for',
+    'html_attributes' => ['multiple' => TRUE],
+  ],
+  'eventnotification_enable' => [
+    'name' => 'eventnotification_enable',
+    'html_type' => 'checkbox',
+    'type' => 'Boolean',
+    'group' => 'eventnotification',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => 'Enable Email notifications to admin user when a new event is created / updated to use a financial type as selected',
+    'default' => 0,
+    'settings_pages' => ['eventnotification' => ['weight' => 10]],
+    'add' => '5.26',
+    'title' => 'Enable Event Notification Emails',
+  ],
+];

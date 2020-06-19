@@ -1,0 +1,10 @@
+  
+{
+  "name": "australian_greens/au.org.greens.eventnotification",
+  "type": "drupal-module",
+  "description": "AG Repo of CiviCRM au.org.greens.eventnotification extension",
+  "require": {
+    "composer/installers": "~1.0",
+    "drupal/drupal": "~7"
+  }
+}
