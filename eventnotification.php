@@ -177,7 +177,7 @@ function eventnotification_civicrm_postCommit($op, $objectName, $objectId, &$obj
 function eventnotification_civicrm_postProcess($formName, $form) {
   if ($formName === 'CRM_Event_Form_ManageEvent_Fee') {
     $params = $form->exportValues();
-    if ($params['is_monetary') {
+    if ($params['is_monetary']) {
       $financialTypes = CRM_Eventnotification_Utils::getNotifiedFinancialTypes();
       if (array_key_exists($params['financial_type_id'], $financialTypes)) {
         $event = civicrm_api3('Event', 'getsingle', ['id' => $form->_id]);
