@@ -146,13 +146,13 @@ function eventnotification_civicrm_themes(&$themes) {
  */
 function eventnotification_civicrm_copy($objectName, &$object) {
   if (CRM_Eventnotification_Utils::isNoficationEnable()) {
-    CRM_Eventnotification_Utils::sendEmailNotification(CRM_Core_Config::domainID(), ['title' => $object->title, 'id' => $object->id]);
+    CRM_Eventnotification_Utils::sendEmailNotification(['title' => $object->title, 'id' => $object->id], CRM_Core_Config::domainID());
   }
   else {
     if (!empty($object->financial_type_id)) {
       $financialTypes = CRM_Eventnotification_Utils::getNotifiedFinancialTypes();
       if (array_key_exists($object->financial_type_id, $financialTypes)) {
-        CRM_Eventnotification_Utils::sendEmailNotification($financialTypes[$object->financial_type_id], ['title' => $object->title, 'id' => $object->id]);
+        CRM_Eventnotification_Utils::sendEmailNotification(['title' => $object->title, 'id' => $object->id], $financialTypes[$object->financial_type_id]);
       }
     }
   }
@@ -161,13 +161,13 @@ function eventnotification_civicrm_copy($objectName, &$object) {
 function eventnotification_civicrm_postCommit($op, $objectName, $objectId, &$objectRef) {
   if ($objectName === 'Event' && $op === 'create') {
     if (CRM_Eventnotification_Utils::isNoficationEnable()) {
-      CRM_Eventnotification_Utils::sendEmailNotification(CRM_Core_Config::domainID(), ['title' => $objectRef->title, 'id' => $objectRef->id]);
+      CRM_Eventnotification_Utils::sendEmailNotification(['title' => $object->title, 'id' => $object->id], CRM_Core_Config::domainID());
     }
     else {
       if (!empty($objectRef->financial_type_id)) {
         $financialTypes = CRM_Eventnotification_Utils::getNotifiedFinancialTypes();
         if (array_key_exists($objectRef->financial_type_id, $financialTypes)) {
-          CRM_Eventnotification_Utils::sendEmailNotification($financialTypes[$objectRef->financial_type_id], ['title' => $objectRef->title, 'id' => $objectRef->id]);
+          CRM_Eventnotification_Utils::sendEmailNotification(['title' => $object->title, 'id' => $object->id], $financialTypes[$objectRef->financial_type_id]);
         }
       }
     }
@@ -181,7 +181,7 @@ function eventnotification_civicrm_postProcess($formName, $form) {
       $financialTypes = CRM_Eventnotification_Utils::getNotifiedFinancialTypes();
       if (array_key_exists($params['financial_type_id'], $financialTypes)) {
         $event = civicrm_api3('Event', 'getsingle', ['id' => $form->_id]);
-        CRM_Eventnotification_Utils::sendEmailNotification($financialTypes[$params['financial_type_id']], $event);
+        CRM_Eventnotification_Utils::sendEmailNotification($event, $financialTypes[$params['financial_type_id']]);
       }
     }
   }
