@@ -33,7 +33,7 @@ abstract class CRM_Eventnotification_Utils {
   }
 
   public static function isNoficationEnable($domainId = NULL) {
-    if (empty($domainId) {
+    if (empty($domainId)) {
       $domainId = CRM_Core_Config::domainID();
     }
     return (bool) Civi::settings($domainId)->get('eventnotification_enable');
