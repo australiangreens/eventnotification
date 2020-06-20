@@ -17,7 +17,7 @@ abstract class CRM_Eventnotification_Utils {
 
   public static function sendEmailNotification(array $eventDetails, int $domainId) {
     $subject = 'New CiviCRM Event Created or modified ' . $eventDetails['title'];
-    $url = CRM_Utils_System::url('event/manage/settings', 'reset=1&action=update&id=' . $eventDetails['id'], TRUE);
+    $url = CRM_Utils_System::url('civicrm/event/manage/settings', 'reset=1&action=update&id=' . $eventDetails['id'], TRUE);
     $body = '<p>A CiviCRM event has been either modified to use a financial type you are to be notified about or has been created in your domain please go to <a href="' . $url . '"> Event settings page</a> to ensure settings are correct</p>';
     $email = Civi::settings($domainId)->get('eventnotification_email_address');
     $toName = Civi::settings($domainId)->get('eventnotification_email_to_name');
