@@ -159,6 +159,7 @@ function eventnotification_civicrm_copy($objectName, &$object) {
 }
 
 function eventnotification_civicrm_postCommit($op, $objectName, $objectId, &$objectRef) {
+  \Civi::log()->debug('Post commit called with params', ['op' => $op, 'objectName' => $objectName, 'objectId' => $objectId, 'objectRef' => $objectRef]);
   if ($objectName === 'Event' && $op === 'create') {
     \Civi::log()->debug('Post Commit', ['objectRef' => $objectRef]);
     if (CRM_Eventnotification_Utils::isNoficationEnable()) {
@@ -178,9 +179,9 @@ function eventnotification_civicrm_postCommit($op, $objectName, $objectId, &$obj
 function eventnotification_civicrm_postProcess($formName, $form) {
   if ($formName === 'CRM_Event_Form_ManageEvent_Fee') {
     $params = $form->exportValues();
-    \Civi::log()->debug('fee params', ['params' => $params]);
     if ($params['is_monetary']) {
       $financialTypes = CRM_Eventnotification_Utils::getNotifiedFinancialTypes();
+      \Civi::log()->debug('Financial Types', ['fintypes' => $financialTypes);
       if (array_key_exists($params['financial_type_id'], $financialTypes)) {
         $event = civicrm_api3('Event', 'getsingle', ['id' => $form->_id]);
         CRM_Eventnotification_Utils::sendEmailNotification($event, $financialTypes[$params['financial_type_id']]);
