@@ -174,6 +174,27 @@ function eventnotification_civicrm_post($op, $objectName, $objectId, &$objectRef
   }
 }
 
+/**
+ * Block changes to the Is active field if we are creating a new event and are not stats officers or similar and are in the NSW Domain
+ */
+function eventnotification_civicrm_buildForm($formName, &$form) {
+  if ($formName === 'CRM_Event_Form_ManageEvent_EventInfo' && CRM_Core_Config::domainID() === 8) {
+    $defaults = ['is_active' => 0];
+    if (empty($this->_id)) {
+      if (!CRM_Core_Permission::check('administer CiviCRM')) {
+        $form->setDefaults($defaults);
+        CRM_Core_Resources::singleton()->addStyle('.crm-event-manage-eventinfo-form-block-is_active { pointer-events: none; }');
+      }
+    }
+    else {
+      $eventDetails = civicrm_api3('Event', 'getsingle', ['id' => $this->_id]);
+      if (empty($eventDetails['is_active']) && !CRM_Core_Permission::check('administer CiviCRM')) {
+        $form->setDefaults($defaults);
+        CRM_Core_Resources::singleton()->addStyle('.crm-event-manage-eventinfo-form-block-is_active { pointer-events: none; }');
+      }
+    }
+  }
+}
 // --- Functions below this ship commented out. Uncomment as required. ---
 
 /**
