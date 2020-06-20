@@ -181,7 +181,7 @@ function eventnotification_civicrm_postProcess($formName, $form) {
     $params = $form->exportValues();
     if ($params['is_monetary']) {
       $financialTypes = CRM_Eventnotification_Utils::getNotifiedFinancialTypes();
-      \Civi::log()->debug('Financial Types', ['fintypes' => $financialTypes);
+      \Civi::log()->debug('Financial Types', ['fintypes' => $financialTypes]);
       if (array_key_exists($params['financial_type_id'], $financialTypes)) {
         $event = civicrm_api3('Event', 'getsingle', ['id' => $form->_id]);
         CRM_Eventnotification_Utils::sendEmailNotification($event, $financialTypes[$params['financial_type_id']]);
