@@ -5,7 +5,7 @@ abstract class CRM_Eventnotification_Utils {
   public static function getNotifiedFinancialTypes(): array {
     $financialTypes = [];
     $domainValues = civicrm_api3('Setting', 'get', ['domain_id' => 'all', 'limit' => 0]);
-    foreach ($domainValues as $domainID => $settings) {
+    foreach ($domainValues['values'] as $domainID => $settings) {
       if (!empty($settings['eventnotification_financial_types']) && !empty($settings['eventnotification_enable'])) {
         foreach ($settings['eventnotification_financial_types'] as $financialTypeID) {
           $financialTypes[$financialTypeID] = $domainID;
