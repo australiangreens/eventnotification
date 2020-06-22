@@ -1,15 +1,15 @@
 # eventnotification
 
-![Screenshot](/images/screenshot.png)
+This extension allows for the sending of an email notification to a specified email address if an event is created within the domain or by virtue of a specified financial type is used with an event.
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+This also sets `is_active` field for events to not active by default for users in the NSW Domain (domain id 8) and whom doesn't have administer CiviCRM permission
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
 * PHP v7.0+
-* CiviCRM (*FIXME: Version number*)
+* CiviCRM 5.25
 
 ## Installation (Web UI)
 
@@ -22,7 +22,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl eventnotification@https://github.com/FIXME/eventnotification/archive/master.zip
+cv dl eventnotification@https://github.com/australiangreens/eventnotification/archive/master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -37,8 +37,4 @@ cv en eventnotification
 
 ## Usage
 
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
-
-## Known Issues
-
-(* FIXME *)
+To configure you need to go to enable the extension then go to `civicrm/admin/eventnotification/settings` to configure the extension's settings.
