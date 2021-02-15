@@ -37,4 +37,4 @@ cv en eventnotification
 
 ## Usage
 
-To configure you need to go to enable the extension then go to `civicrm/admin/eventnotification/settings` to configure the extension's settings.
+To configure you need to go to enable the extension then go to `civicrm/admin/setting/eventnotification` to configure the extension's settings.
