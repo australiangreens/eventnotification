@@ -145,7 +145,7 @@ function eventnotification_civicrm_themes(&$themes) {
  * Implements hook_civicrm_copy().
  */
 function eventnotification_civicrm_copy($objectName, &$object) {
-  if (CRM_Eventnotification_Utils::isNoficationEnable()) {
+  if (CRM_Eventnotification_Utils::isNotificationEnable()) {
     CRM_Eventnotification_Utils::sendEmailNotification(['title' => $object->title, 'id' => $object->id], CRM_Core_Config::domainID());
   }
   else {
@@ -160,7 +160,7 @@ function eventnotification_civicrm_copy($objectName, &$object) {
 
 function eventnotification_civicrm_post($op, $objectName, $objectId, &$objectRef) {
   if ($objectName === 'Event' && $op === 'create') {
-    if (CRM_Eventnotification_Utils::isNoficationEnable()) {
+    if (CRM_Eventnotification_Utils::isNotificationEnable()) {
       CRM_Eventnotification_Utils::sendEmailNotification(['title' => $objectRef->title, 'id' => $objectRef->id], CRM_Core_Config::domainID());
     }
     else {

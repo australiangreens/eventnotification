@@ -32,7 +32,7 @@ abstract class CRM_Eventnotification_Utils {
     CRM_Utils_Mail::send($params);
   }
 
-  public static function isNoficationEnable($domainId = NULL) {
+  public static function isNotificationEnable($domainId = NULL) {
     if (empty($domainId)) {
       $domainId = CRM_Core_Config::domainID();
     }
