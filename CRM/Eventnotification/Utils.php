@@ -37,9 +37,7 @@ abstract class CRM_Eventnotification_Utils {
       $domainId = CRM_Core_Config::domainID();
     }
     if (Civi::settings($domainId)->get('eventnotification_enable')) {
-      if (!CRM_Core_Permission::check('administer CiviCRM')) {
-        return TRUE;
-      }
+      return TRUE;
     }
     return FALSE;
   }
