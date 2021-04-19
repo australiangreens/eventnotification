@@ -32,14 +32,12 @@ abstract class CRM_Eventnotification_Utils {
     CRM_Utils_Mail::send($params);
   }
 
-  public static function isNoficationEnable($domainId = NULL) {
+  public static function isNotificationEnable($domainId = NULL) {
     if (empty($domainId)) {
       $domainId = CRM_Core_Config::domainID();
     }
     if (Civi::settings($domainId)->get('eventnotification_enable')) {
-      if (!CRM_Core_Permission::check('administer CiviCRM')) {
-        return TRUE;
-      }
+      return TRUE;
     }
     return FALSE;
   }
